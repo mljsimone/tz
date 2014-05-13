@@ -1,0 +1,72 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="hashdogs"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="hashdogs"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="hashdogs"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="tz"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>Tz.io - A web application for managing your timezones.</title>
+    <meta name="description" content="A web application for managing your timezones.">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Facebook's crap begins -->
+    <meta property="og:title" content="Tz.io - A web application for managing your timezones.">
+    <meta property="og:url" content="http://tz.io">
+    <meta property="og:image" content="http://tz.io/images/facebook-og.png">
+    <!-- Facebook's crap ends -->
+    
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="node_modules/twitter-bootstrap-3.0.0/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/bundle.min.css">
+    
+    <!-- Hide the <body> till the rendering is done !-->
+    <style>
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+    </style>
+
+  </head>
+  <body lang="en" ng-cloak>
+    <div id="page-bg" class="office">
+      <div class="overlay"></div>
+    </div>
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#!/">Tz.io</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#!/">Home</a></li>
+          </ul>
+          
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown dropdown-inverse">
+              <a class="dropdown-toggle" data-toggle="dropdown">Mariano Simone <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="">Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="#!/logout">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container">
+      <ng-view></ng-view>
+    </div>
+    
+    <script src="scripts/application.min.js"></script>
+  </body>
+</html>

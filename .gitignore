@@ -1,0 +1,7 @@
+/frontend/build
+/frontend/node_modules
+
+/backend/node_modules
+
+.DS_Store
+Thumbs.db

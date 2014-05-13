@@ -1,0 +1,21 @@
+#login-page {
+
+  h2 {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  #lp-form {
+    margin-top: 100px;
+    text-align: center;
+    
+    .form-group {
+      margin-right: 8px;
+    }
+    
+    button[type="submit"] {
+      margin-left: 8px;
+    }
+  }
+}
+

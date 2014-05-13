@@ -1,0 +1,33 @@
+{
+  "name": "timezones-client",
+  "version": "0.0.0",
+  "description": "A web application for managing timezones. (client)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mariano Simone",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.6.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-minify-html": "^0.1.1",
+    "gulp-imagemin": "^0.1.5",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-uglify": "^0.2.1",
+    "gulp-autoprefixer": "0.0.6",
+    "gulp-cache": "^0.1.3",
+    "gulp-concat": "^2.2.0",
+    "gulp-changed": "^0.3.0",
+    "gulp-clean": "^0.2.4",
+    "gulp-connect": "^2.0.1",
+    "gulp-sass": "^0.7.1",
+    "gulp-jshint": "^1.5.3",
+    "gulp-browserify": "^0.5.0",
+    "rsync": "^0.3.0"
+  },
+  "dependencies": {
+    "angular": "^1.2.16",
+    "twitter-bootstrap-3.0.0": "^3.0.0",
+    "angular-route": "^1.2.17-build.163.1"
+  }
+}
