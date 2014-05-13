@@ -29,12 +29,10 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
   
   // Register the routes
   $routeProvider
-    .when("/",             { controller: "HomeController",         templateUrl: "views/home.html" })
-    
-    .when("/registration", { controller: "RegistrationController", templateUrl: "views/registration.html" })
-    .when("/login",        { controller: "LoginController",        templateUrl: "views/login.html" })
-    .when("/logout",       { controller: "LogoutController", template: "" })
-    
+    .when("/",        { controller: "HomeController",   templateUrl: "views/home.html" })
+    .when("/signup",  { controller: "SignupController", templateUrl: "views/signup.html" })
+    .when("/signin",  { controller: "SigninController", templateUrl: "views/signin.html" })
+    .when("/signout", { controller: "LogoutController", template: "" })
     .otherwise({ redirectTo: "/" });
 }]);
 

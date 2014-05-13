@@ -3,8 +3,11 @@
 module.exports = angular.module("tz.controllers", [])
   .controller("HomeController", ['$scope', require("./home_controller")])
   
-  .controller("RegistrationController", ['$scope', require("./registration_controller")])
-  .controller("LoginController", ['$scope', require("./login_controller")])
-  .controller("LoginFormController", ['$scope', require("./login-form_controller")])
-  .controller("LogoutController", ['$scope', '$location', require("./logout_controller")])
+  .controller("SignupController", ['$scope', require("./signup_controller")])
+  .controller("SignupFormController", ['$scope', '$http', require("./signup-form_controller")])
+  
+  .controller("SigninController", ['$scope', require("./signin_controller")])
+  .controller("SigninFormController", ['$scope', require("./signin-form_controller")])
+  
+  .controller("SignoutController", ['$scope', '$location', require("./signout_controller")])
   ;

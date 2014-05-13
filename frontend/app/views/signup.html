@@ -1,0 +1,36 @@
+<div id="signup-page">
+  <div class="row">
+    <div class="col-md-12"> 
+      <h1>Sign up</h1>
+      <h2>In order to give you an account, we need all this data from you:</h2>
+      <form id="rp-form" class="form-horizontal" ng-controller="SignupFormController" ng-submit="onSubmit()">
+        <div class="form-group">
+          <label for="rp-form-first-name" class="col-md-2 control-label">First name</label>
+          <div class="col-md-2"><input type="text" class="form-control" id="rp-form-first-name" placeholder="First" autofocus></div>
+        </div>
+
+        <div class="form-group">
+          <label for="rp-form-first-name" class="col-md-2 control-label">Last name</label>
+          <div class="col-md-2"><input type="text" class="form-control" id="rp-form-first-last" placeholder="Last"></div>
+        </div>
+       
+        <div class="form-group">
+          <label for="rp-form-email" class="col-md-2 control-label">Email</label>
+          <div class="col-md-3"><input type="email" class="form-control" id="rp-form-email"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="rp-form-password" class="col-md-2 control-label">Password</label>
+          <div class="col-md-3"><input type="password" class="form-control" id="rp-form-password"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="rp-form-password-dup" class="col-md-2 control-label">Password (again)</label>
+          <div class="col-md-3"><input type="password" class="form-control" id="rp-form-password-dup"></div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </form>
+    </div>
+  </div>
+</div>
