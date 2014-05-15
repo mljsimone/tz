@@ -1,39 +1,9 @@
-var tz = require("express")();
+var express = require("express");
+var tz = module.exports = express();
 
-tz.get("/", function(req, res) {
-  res.send("hello world");
-});
-
-// create
-tz.post("/api/v1/users", function(req, res) {
-  console.log("/api/v1/users");
-  console.log(req.body);
-
-  res.end("");
-});
-
-
-
-// Timezones
-
-// list
-tz.get("/api/v1/timezones", function(req, res) { });
-
-// find
-tz.get("/api/v1/timezones/:id", function(req, res) { });
-
-// create
-tz.post("/api/v1/timezones", function(req, res) { });
-
-// update
-tz.put("/api/v1/timezones/:id", function(req, res) { });
-
-// partial update (?)
-tz.patch("/api/v1/timezones/:id", function(req, res) { });
-
-// delete
-tz.delete("/api/v1/timezones/:id", function(req, res) { });
+var models = require("./models");
+var controllers = require("./controllers");
 
 var server = tz.listen(3000, function() {
-  console.log("Listening on port %d", server.address().port);
+  console.log("Listening on %s:%d", server.address().address, server.address().port);
 });
