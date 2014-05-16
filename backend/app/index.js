@@ -1,5 +1,12 @@
 var express = require("express");
-var tz = module.exports = express();
+var bodyParser = require("body-parser");
+var serveStatic = require("serve-static");
+
+var tz = express();
+module.exports = tz;
+
+tz.use(bodyParser());
+tz.use(serveStatic(__dirname + "/../public"));
 
 var models = require("./models");
 var controllers = require("./controllers");

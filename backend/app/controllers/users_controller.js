@@ -1,8 +1,12 @@
 var tz = require("..");
-var User = require("../models/user");
+var User = require("../models/user_model");
 
 // create
-tz.post("/api/v1/users/users", function(req, res) {
+tz.post("/api/v1/users", function(req, res) {
+  console.log("An user wants to register with this data: ");
+  console.log(req.body);
+  
+  res.send(200);
 });
 
 // destroy
