@@ -11,6 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.2.0",
-    "sequelize": "^1.7.5"
+    "sequelize": "^1.7.5",
+    "body-parser": "^1.2.0",
+    "serve-static": "^1.1.0"
   }
 }
