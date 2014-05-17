@@ -128,5 +128,5 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('default', [
-  'views', 'images', 'scripts', 'styles', 'watch', 'server'
+  'views', 'images', 'scripts', 'styles', 'watch'
 ]);
