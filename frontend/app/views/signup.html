@@ -3,33 +3,59 @@
     <div class="col-md-12"> 
       <h1>Sign up</h1>
       <h2>In order to give you an account, we need all this data from you:</h2>
-      <form id="rp-form" class="form-horizontal" ng-controller="SignupFormController" ng-submit="onSubmit()">
-        <div class="form-group">
+      <form id="rp-form" name="loginForm" class="form-horizontal" ng-controller="SignupFormController" ng-submit="onSubmit()" novalidate>
+
+        <div class="form-group" ng-class="{ 'has-success': loginForm.firstName.$valid, 'has-error': loginForm.firstName.$dirty && loginForm.firstName.$invalid }">
           <label for="rp-form-first-name" class="col-md-2 control-label">First name</label>
-          <div class="col-md-2"><input type="text" class="form-control" id="rp-form-first-name" placeholder="First" autofocus></div>
+          <div class="col-md-4">
+            <input ng-model="user.firstName" name="firstName" type="text" class="form-control" id="rp-form-first-name" autofocus required>
+            <span ng-show="loginForm.firstName.$dirty && loginForm.firstName.$error.required" class="help-block">It can't be empty.</span>
+          </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-success': loginForm.lastName.$valid, 'has-error': loginForm.lastName.$dirty && loginForm.lastName.$invalid }">
           <label for="rp-form-first-name" class="col-md-2 control-label">Last name</label>
-          <div class="col-md-2"><input type="text" class="form-control" id="rp-form-first-last" placeholder="Last"></div>
-        </div>
-       
-        <div class="form-group">
-          <label for="rp-form-email" class="col-md-2 control-label">Email</label>
-          <div class="col-md-3"><input type="email" class="form-control" id="rp-form-email"></div>
-        </div>
-
-        <div class="form-group">
-          <label for="rp-form-password" class="col-md-2 control-label">Password</label>
-          <div class="col-md-3"><input type="password" class="form-control" id="rp-form-password"></div>
-        </div>
-
-        <div class="form-group">
-          <label for="rp-form-password-dup" class="col-md-2 control-label">Password (again)</label>
-          <div class="col-md-3"><input type="password" class="form-control" id="rp-form-password-dup"></div>
+          <div class="col-md-4">
+            <input ng-model="user.lastName" name="lastName" type="text" class="form-control" id="rp-form-last-name" required>
+            <span ng-show="loginForm.lastName.$dirty && loginForm.lastName.$error.required" class="help-block">It can't be empty.</span>
+          </div>
         </div>
         
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        <div class="form-group" ng-class="{ 'has-success': loginForm.email.$valid, 'has-error': loginForm.email.$dirty && loginForm.email.$invalid }">
+          <label for="rp-form-email" class="col-md-2 control-label">Email</label>
+          <div class="col-md-4">
+            <input ng-model="user.email" name="email" type="email" class="form-control" id="rp-form-email" required>
+            <div ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+              <span ng-show="loginForm.email.$error.required" class="help-block">It can't be empty.</span>
+              <span ng-show="loginForm.email.$error.email" class="help-block">The email you provided is invalid.</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-success': loginForm.password.$valid, 'has-error': loginForm.password.$dirty && loginForm.password.$invalid }">
+          <label for="rp-form-password" class="col-md-2 control-label">Password</label>
+          <div class="col-md-4">
+            <input ng-model="user.password" name="password" type="password" class="form-control" id="rp-form-password" required ng-minlength="8" ng-pattern="/[^0-9a-zA-Z]{1,}/">
+            <div ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+              <span ng-show="loginForm.password.$error.required" class="help-block">It can't be empty.</span>
+              <span ng-show="loginForm.password.$error.minlength" class="help-block">It should be at least 8 characters long.</span>
+              <span ng-show="loginForm.password.$error.pattern" class="help-block">It should cointain at least one puntation character.</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-success': loginForm.password2.$valid, 'has-error': loginForm.password2.$dirty && loginForm.password2.$invalid }">
+          <label for="rp-form-password-dup" class="col-md-2 control-label">Password (again)</label>
+          <div class="col-md-4">
+            <input ng-model="user.password2" name="password2" type="password" class="form-control" id="rp-form-password-dup" required ng-equal="#rp-form-password">
+            <div ng-show="loginForm.password2.$dirty && loginForm.password2.$invalid">
+              <span ng-show="loginForm.password2.$error.required" class="help-block">It can't be empty.</span>
+              <span ng-show="loginForm.password2.$error.equal && !loginForm.password2.$error.required" class="help-block">They should match.</span>
+            </div>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Sign up</button>
       </form>
     </div>
   </div>
