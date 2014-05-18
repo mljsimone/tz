@@ -14,7 +14,7 @@ require("./analytics");
 var app = angular.module("tz", [
   "ngRoute",
   require("./controllers").name,
-  //require("./directives").name,
+  require("./directives").name,
   //require("./filters").name,
   //require("./services").name
 ]);
