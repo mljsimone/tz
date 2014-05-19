@@ -46,7 +46,7 @@ gulp.task('images', function() {
   gulp
     .src(PATHS.input.images)
     .pipe(changed(PATHS.output.images))
-    .pipe(minifyIMG())
+    //.pipe(minifyIMG())
     .pipe(gulp.dest(PATHS.output.images))
     .pipe(connect.reload());
 });
@@ -98,7 +98,7 @@ gulp.task('clean', function() {
 gulp.task('server', function() {
   connect.server({
     root: ['build'],
-    port: 8080,
+    port: 3000,
     livereload: true
   });
 });
@@ -130,3 +130,9 @@ gulp.task('deploy', function() {
 gulp.task('default', [
   'views', 'images', 'scripts', 'styles', 'watch'
 ]);
+
+
+gulp.task('all', [
+  'views', 'images', 'scripts', 'styles', 'watch', 'server'
+]);
+
