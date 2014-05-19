@@ -1,9 +1,8 @@
-var Sequelize = require("sequelize");
-var sequelize = require("./.");
-
-module.exports = sequelize.define("User", {
-  firstName: Sequelize.STRING,
-  lastName: Sequelize.STRING,
-  email: Sequelize.STRING,
-  password: Sequelize.STRING
-});
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define("User", {
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING
+  });
+};

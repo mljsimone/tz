@@ -1,9 +1,8 @@
-var Sequelize = require("sequelize");
-var sequelize = require("./.");
-
-module.exports = sequelize.define("Timezone", {
-  user_id: Sequelize.INTEGER,
-  name: Sequelize.STRING,
-  city: Sequelize.STRING,
-  delta: Sequelize.INTEGER
-});
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define("Timezone", {
+    user_id: DataTypes.INTEGER,
+    name: DataTypes.STRING,
+    city: DataTypes.STRING,
+    delta: DataTypes.INTEGER
+  });
+};
