@@ -1,12 +1,11 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var serveStatic = require("serve-static");
 
 var tz = express();
 module.exports = tz;
 
 tz.use(bodyParser());
-tz.use(serveStatic(__dirname + "/../public"));
+tz.use(express.static(__dirname + "/../public"));
 
 tz.use(function(request, response, next) {
   response.header("Cache-Control", "no-cache, no-store, must-revalidate");
