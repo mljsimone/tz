@@ -11,8 +11,10 @@ module.exports = {
 function create(request, response) {
   User.
     create(request.body).
-    success(function(wtf) {
-      response.send(201);
+    success(function() {
+      setTimeout(function() {
+        response.send(201);
+      }, 3000);
     }).
     error(function(error) {
       response.send(500, { error: error });
