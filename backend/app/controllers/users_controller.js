@@ -9,10 +9,14 @@ module.exports = {
 };
 
 function create(request, response) {
-  console.log(req.params);
-  console.log(req.body);
-  
-  response.send(200);
+  User.
+    create(request.body).
+    success(function(wtf) {
+      response.send(201);
+    }).
+    error(function(error) {
+      response.send(500, { error: error });
+    });
 }
 
 function destroy(request, response) {
@@ -30,7 +34,7 @@ function findAll(request, response) {
 }
 
 function findOne(request, response) {
-  var id = req.params.id;
+  var id = request.params.id;
   
   User.
     find(id).

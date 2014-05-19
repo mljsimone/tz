@@ -6,6 +6,7 @@ window.jQuery = require("jquery"),
 
 require("angular");
 require("angular-route/angular-route");
+require("angular-resource/resource");
 require("twitter-bootstrap-3.0.0/dist/js/bootstrap");
 
 // Lets add the tracking code right here.
@@ -13,16 +14,14 @@ require("./analytics");
 
 var app = angular.module("tz", [
   "ngRoute",
+  "ngResource",
   require("./controllers").name,
   require("./directives").name,
   //require("./filters").name,
-  //require("./services").name
+  require("./services").name
 ]);
 
 app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
-  
-  console.log("Configuring tz module");
-
   // Tell the crawler that they are Ajax links.
   // https://developers.google.com/webmasters/ajax-crawling/docs/getting-started
   $locationProvider.hashPrefix("!");

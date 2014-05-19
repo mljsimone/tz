@@ -8,11 +8,18 @@ module.exports = tz;
 tz.use(bodyParser());
 tz.use(serveStatic(__dirname + "/../public"));
 
+tz.use(function(request, response, next) {
+  response.header("Cache-Control", "no-cache, no-store, must-revalidate");
+  response.header("Pragma", "no-cache");
+  response.header("Expires", 0);
+  next();
+});
+
 var models = require("./models");
 var controllers = require("./controllers");
 
 var users = controllers.users;
-//var timezones = controllers.timezones;
+var timezones = controllers.timezones;
 
 tz.
   post("/api/v1/users", users.create).
@@ -21,24 +28,24 @@ tz.
   get("/api/v1/users/:id?", users.findOne).
   put("/api/v1/users/:id", users.update);
 
-/*
 tz.
   post("/api/v1/timezones", timezones.create).
   delete("/api/v1/timezones/:id", timezones.destroy).
   get("/api/v1/timezones", timezones.findAll).
   get("/api/v1/timezones/:id?", timezones.findOne).
   put("/api/v1/timezones/:id", timezones.update);
-*/
 
 models.sequelize.
   sync({ force: true }).
   success(function() {
-    models.User.
+    var User = models.User;
+    
+    User.
       create({ username: 'bob', password: '1111' }).
       success(function() { console.log("User bob was created."); }).
       error(function() { console.log("Unable to create user bob."); });
     
-    models.User.
+    User.
       create({ username: 'alice', password: '1111' }).
       success(function() { console.log("User alice was created."); }).
       error(function() { console.log("Unable to create user alice."); });
