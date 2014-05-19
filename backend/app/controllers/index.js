@@ -1,1 +1,4 @@
-require("./users_controller");
+module.exports = {
+  users: require("./users_controller"),
+  timezones: require("./timezones_controller")
+};

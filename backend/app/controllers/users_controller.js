@@ -1,25 +1,46 @@
-var tz = require("..");
-var User = require("../models/user_model");
+var User = require("../models").User;
 
-// create
-tz.post("/api/v1/users", function(req, res) {
-  console.log("An user wants to register with this data: ");
+module.exports = {
+  create: create,
+  destroy: destroy,
+  findAll: findAll,
+  findOne: findOne,
+  update: update
+};
+
+function create(request, response) {
+  console.log(req.params);
   console.log(req.body);
   
-  res.send(200);
-});
+  response.send(200);
+}
 
-// destroy
-tz.delete("/api/v1/users/:id", function(req, res) {
-});
+function destroy(request, response) {
+}
 
-// find
-tz.get("/api/v1/users/:id?", function(req, res) {
-  User.find({ username: 'john' }).complete(function(err, user) {
-    res.json(user);
-  });
-});
+function findAll(request, response) {
+  User.
+    findAll().
+    success(function(users) {
+      response.json(users);
+    }).
+    error(function(error) {
+      response.json(500, { error: error });
+    });
+}
 
-// update
-tz.put("/api/v1/users/:id", function(req, res) {
-});
+function findOne(request, response) {
+  var id = req.params.id;
+  
+  User.
+    find(id).
+    success(function(user) {
+      response.json(user);
+    }).
+    error(function(error) {
+      response.json(500, { error: error });
+    });
+}
+
+function update(request, response) {
+}
