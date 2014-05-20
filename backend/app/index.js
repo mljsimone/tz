@@ -1,33 +1,32 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var livereload = require("connect-livereload");
+var express = require("express"),
+  jwt = require('express-jwt'),
+  bodyParser = require("body-parser"),
+  liveReload = require("connect-livereload");
 
-var tz = express();
-module.exports = tz;
+var tz = (module.exports = express());
 
-tz.use(bodyParser());
-tz.use(livereload());
+var secret = 'secret sauce #40';
+
+// JSON Web Token middleware for token based authentification.
+tz.use(jwt({ secret: secret }));
+
+// Add the livereload script to the html views.
+tz.use(liveReload());
+
+// Serve static files directly.
 tz.use(express.static(__dirname + "/../public"));
 
+// Populate request.params.
+tz.use(bodyParser());
+
+// Load models module.
 var models = require("./models");
+
+// Load controllers module.
 var controllers = require("./controllers");
 
-var users = controllers.users;
-var timezones = controllers.timezones;
-
-tz.
-  post("/api/v1/users", users.create).
-  delete("/api/v1/users/:id", users.destroy).
-  get("/api/v1/users", users.findAll).
-  get("/api/v1/users/:id?", users.findOne).
-  put("/api/v1/users/:id", users.update);
-
-tz.
-  post("/api/v1/timezones", timezones.create).
-  delete("/api/v1/timezones/:id", timezones.destroy).
-  get("/api/v1/timezones", timezones.findAll).
-  get("/api/v1/timezones/:id?", timezones.findOne).
-  put("/api/v1/timezones/:id", timezones.update);
+// Bind controllers methods to the REST api.
+require("./routes");
 
 models.sequelize.
   sync({ force: true }).

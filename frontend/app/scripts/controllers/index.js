@@ -7,7 +7,7 @@ module.exports = angular.module("tz.controllers", [])
   .controller("SignupFormController", ['$scope', '$location', 'User', require("./signup-form_controller")])
   
   .controller("SigninController", ['$scope', require("./signin_controller")])
-  .controller("SigninFormController", ['$scope', require("./signin-form_controller")])
+  .controller("SigninFormController", ['$scope', '$http', require("./signin-form_controller")])
   
   .controller("SignoutController", ['$scope', '$location', require("./signout_controller")])
   ;

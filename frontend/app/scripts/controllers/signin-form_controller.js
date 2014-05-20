@@ -1,11 +1,7 @@
 "use strict";
 
-module.exports = function($scope) {
-  console.log("begin loginFormController()");
-  console.log("end loginFormController()");
+module.exports = function($scope, $http) {
   
   $scope.onSubmit = function() {
-    console.log("begins onLogin");
-    console.log("ends onLogin");
   }
 };
