@@ -1,18 +1,13 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var livereload = require("connect-livereload");
 
 var tz = express();
 module.exports = tz;
 
 tz.use(bodyParser());
+tz.use(livereload());
 tz.use(express.static(__dirname + "/../public"));
-
-tz.use(function(request, response, next) {
-  response.header("Cache-Control", "no-cache, no-store, must-revalidate");
-  response.header("Pragma", "no-cache");
-  response.header("Expires", 0);
-  next();
-});
 
 var models = require("./models");
 var controllers = require("./controllers");
@@ -54,5 +49,5 @@ models.sequelize.
     });
   }).
   error(function(error) {
-    throw new Error("Sequelize's sync failed: " + error);
+    throw new Error("Sequelize's sync failed: ", error);
   });

@@ -53,25 +53,24 @@ gulp.task('images', function() {
 
 gulp.task('scripts', function() {
   gulp
-    //.src(PATHS.input.scripts)
     .src('app/scripts/application.js')
-    .pipe(changed(PATHS.output.scripts))
+    .pipe(changed('build/scripts'))
     .pipe(browserify())
     .pipe(minifyJS())
     .pipe(rename('application.min.js'))
-    .pipe(gulp.dest(PATHS.output.scripts))
+    .pipe(gulp.dest('build/scripts'))
     .pipe(connect.reload());
 });
 
 gulp.task('styles', function() {
   gulp
-    .src(PATHS.input.styles)
-    .pipe(changed(PATHS.output.styles))
+    .src('app/styles/**/*')
+    .pipe(changed('build/styles'))
     .pipe(sass({ style: 'expanded', 'errLogToConsole': true }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9', 'ios 6', 'android 4'))
     .pipe(minifyCSS())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(PATHS.output.styles))
+    .pipe(gulp.dest('build/styles'))
     .pipe(connect.reload());
 });
 
@@ -98,7 +97,7 @@ gulp.task('clean', function() {
 gulp.task('server', function() {
   connect.server({
     root: ['build'],
-    port: 3000,
+    port: 8080,
     livereload: true
   });
 });
@@ -128,11 +127,5 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('default', [
-  'views', 'images', 'scripts', 'styles', 'watch'
-]);
-
-
-gulp.task('all', [
   'views', 'images', 'scripts', 'styles', 'watch', 'server'
 ]);
-
