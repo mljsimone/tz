@@ -1,1 +1,20 @@
 Timezones: A webapp for managing timezones.
+
+This web application is composed of two, clearly separated, applications.
+
+One of them runs in the server and acts as a RESTful api server.
+The other one, it runs on the browser and acts as a client for the above mentioned api.
+
+JSON Web Tokens are being used for authentification.
+
+The following is a list of libraries/frameworks being used in this project:
+
+Sass (http://sass-lang.com)
+Node.js (http://nodejs.org)
+Sqlite (http://www.sqlite.org)
+Express.js (http://expressjs.com)
+Angular.js (http://angularjs.org)
+Sequelize.js (http://sequelizejs.com)
+jQuery (http://jquery.com)
+jsonwebtoken (https://github.com/auth0/node-jsonwebtoken)
+Gulp.js (http://gulpjs.com)
