@@ -7,7 +7,7 @@ window.jQuery = require("jquery"),
 require("angular");
 require("angular-route/angular-route");
 require("angular-resource/resource");
-require("twitter-bootstrap-3.0.0/dist/js/bootstrap");
+require("bootstrap/dist/js/bootstrap");
 
 // Lets add the tracking code right here.
 require("./analytics");
@@ -21,18 +21,22 @@ var app = angular.module("tz", [
   require("./services").name
 ]);
 
-app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
+app.config(["$routeProvider", "$locationProvider", "$httpProvider", function($routeProvider, $locationProvider, $httpProvider) {
+
+  // Add the JWT token to every request the application makes. 
+  $httpProvider.interceptors.push("authentificationInterceptor");
+  
   // Tell the crawler that they are Ajax links.
   // https://developers.google.com/webmasters/ajax-crawling/docs/getting-started
   $locationProvider.hashPrefix("!");
   
   // Register the routes
-  $routeProvider
-    .when("/",        { controller: "HomeController",   templateUrl: "views/home.html" })
-    .when("/signup",  { controller: "SignupController", templateUrl: "views/signup.html" })
-    .when("/signin",  { controller: "SigninController", templateUrl: "views/signin.html" })
-    .when("/signout", { controller: "LogoutController", template: "" })
-    .otherwise({ redirectTo: "/" });
+  $routeProvider.
+    when("/",        { controller: "HomeController",   templateUrl: "views/home.html" }).
+    when("/signup",  { controller: "SignupController", templateUrl: "views/signup.html" }).
+    when("/signin",  { controller: "SigninController", templateUrl: "views/signin.html" }).
+    when("/signout", { controller: "SignoutController", template: "" }).
+    otherwise({ redirectTo: "/" });
 }]);
 
 

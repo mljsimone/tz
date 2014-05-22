@@ -8,7 +8,7 @@ var tz = (module.exports = express());
 var secret = 'secret sauce #40';
 
 // JSON Web Token middleware for token based authentification.
-tz.use(jwt({ secret: secret }));
+//tz.use(jwt({ secret: secret }));
 
 // Add the livereload script to the html views.
 tz.use(liveReload());
@@ -25,22 +25,36 @@ var models = require("./models");
 // Load controllers module.
 var controllers = require("./controllers");
 
-// Bind controllers methods to the REST api.
+// Bind controllers methods to urls.
 require("./routes");
 
 models.sequelize.
   sync({ force: true }).
   success(function() {
     var User = models.User;
+
+    var u1 = {
+      firstName: 'Mariano',
+      lastName: 'Simone',
+      email: 'mljsimone@gmail.com',
+      password: '123'
+    };
+    
+    var u2 = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@fucking.doe.com',
+      password: 'abc'
+    };
     
     User.
-      create({ username: 'bob', password: '1111' }).
-      success(function() { console.log("User bob was created."); }).
+      create(u1).
+      success(function() { }).
       error(function() { console.log("Unable to create user bob."); });
     
     User.
-      create({ username: 'alice', password: '1111' }).
-      success(function() { console.log("User alice was created."); }).
+      create(u2).
+      success(function() { }).
       error(function() { console.log("Unable to create user alice."); });
       
     var server = tz.listen(3000, function() {

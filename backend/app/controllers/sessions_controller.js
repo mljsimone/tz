@@ -1,4 +1,5 @@
-var User = require("../models").User;
+var jwt = require("jsonwebtoken"),
+    User = require("../models").User;
 
 module.exports = {
   create: create,
@@ -9,32 +10,35 @@ module.exports = {
 };
 
 function create(request, response) {
-  // Validate user's email and password.
-  /*
-   find user by his email.
-   get the salt that was used to hash his password.
-   hash the incoming password along the salt.
-   compare both hashes.
-   */
   
-  console.log(request.body);
-
-  if ("lhash" == "rhash") { 
-    // if the user or password are wrong, send a 401, "Wrong user or password"
-  }
+  if (typeof request.body.email == "undefined" || typeof request.body.password == "undefined")
+    return response.json(422, { error: "email and password are required." });
+  
+  var email = request.body.email;
+  var password = request.body.password;
   
   User.
-    find(1).
+    find({ where: { email: email }}).
     success(function(user) {
-      var tokenData = user.values;
-      var secret = 'secret sauce #40';
 
-      var token = jwt.sign(tokenData, secret, { expiresInMinutes: 60 * 5 });
-      //response.send({ token: token });
-      response.send(201);
+      setTimeout(function () {
+
+      if (!user)
+        return response.json(401, { error: "Wrong email or password." });
+      
+      if (!user.verifyPassword(password))
+        return response.send(401, { error: "Wrong email or password." });
+      
+      var token = jwt.sign(user.toJSON(), "secret sauce #40", { expiresInMinutes: 60 * 5 });
+      
+      response.json({ token: token });
+
+      }, 1000 * 3); //setTimeout
+
+
     }).
     error(function(error) {
-      response.send(500, error);
+      response.json(500, error);
     });
 }
 
