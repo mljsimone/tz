@@ -1,21 +1,12 @@
 module.exports = function($q, $window) {
   return {
-    request: function(request) {
-      request.headers = request.headers || {};
+    request: function(config) {
+      config.headers = config.headers || {};
       
       if ($window.sessionStorage.token)
-        request.headers.Authorization = "Bearer " + $window.sessionStorage.token;
-
-      return request;
-    },
-    response: function(response) {
-
-      if (response.status == 401) {
-        // the user isn't authenticated.
-        // Should be send him to /signin ??
-      }
+        config.headers.Authorization = "Bearer " + $window.sessionStorage.token;
       
-      return response || $q.when(response);
+      return config;
     }
   };
 };
