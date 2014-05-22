@@ -4,7 +4,7 @@
   "description": "A web application for managing timezones (server)",
   "main": "app/index.js",
   "scripts": {
-    "start": "node app/index.js",
+    "start": "supervisor app/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mariano Simone",
@@ -14,7 +14,8 @@
     "sequelize": "^1.7.5",
     "body-parser": "^1.2.0",
     "express-jwt": "^0.2.1",
-    "jsonwebtoken": "^0.4.0"
+    "jsonwebtoken": "^0.4.0",
+    "bcrypt": "^0.7.8"
   },
   "devDependencies": {
     "connect-livereload": "^0.4.0"
