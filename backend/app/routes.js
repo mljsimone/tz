@@ -1,30 +1,29 @@
 var app = require("./."),
+    jwt = require('express-jwt'),
     controllers = require("./controllers");
 
 var users = controllers.users,
     sessions = controllers.sessions,
     timezones = controllers.timezones;
 
-// Do not repeat the url prefix.
-function _(suffix) {
-  return "/api/v1" + suffix;
-}
+var secret = 'secret sauce #40';
+var authenticated = jwt({ secret: secret });
 
 app.
-  post(   _("/users"),      users.create).
-  delete( _("/users/:id"),  users.destroy).
-  get(    _("/users"),      users.findAll).
-  get(    _("/users/:id?"), users.findOne).
-  put(    _("/users/:id"),  users.update).
-
-  post(   _("/sessions"),      sessions.create).
-  delete( _("/sessions/:id"),  sessions.destroy).
-  get(    _("/sessions"),      sessions.findAll).
-  get(    _("/sessions/:id?"), sessions.findOne).
-  put(    _("/sessions/:id"),  sessions.update).
-
-  post(   _("/timezones"),      timezones.create).
-  delete( _("/timezones/:id"),  timezones.destroy).
-  get(    _("/timezones"),      timezones.findAll).
-  get(    _("/timezones/:id?"), timezones.findOne).
-  put(    _("/timezones/:id"),  timezones.update);
+  post(   "/upi/v1/sers",       users.create).
+  delete( "/api/v1/users/:id",  authenticated, users.destroy).
+  get(    "/api/v1/users",      authenticated, users.findAll).
+  get(    "/api/v1/users/:id?", authenticated, users.findOne).
+  put(    "/api/v1/users/:id",  authenticated, users.update).
+  
+  post(   "/api/v1/sessions",      sessions.create).
+  delete( "/api/v1/sessions/:id",  authenticated, sessions.destroy).
+  get(    "/api/v1/sessions",      authenticated, sessions.findAll).
+  get(    "/api/v1/sessions/:id?", authenticated, sessions.findOne).
+  put(    "/api/v1/sessions/:id",  authenticated, sessions.update).
+  
+  post(   "/api/v1/timezones",      authenticated, timezones.create).
+  delete( "/api/v1/timezones/:id",  authenticated, timezones.destroy).
+  get(    "/api/v1/timezones",      authenticated, timezones.findAll).
+  get(    "/api/v1/timezones/:id?", authenticated, timezones.findOne).
+  put(    "/api/v1/timezones/:id",  authenticated, timezones.update);

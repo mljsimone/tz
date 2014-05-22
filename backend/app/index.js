@@ -1,14 +1,8 @@
 var express = require("express"),
-  jwt = require('express-jwt'),
   bodyParser = require("body-parser"),
   liveReload = require("connect-livereload");
 
 var tz = (module.exports = express());
-
-var secret = 'secret sauce #40';
-
-// JSON Web Token middleware for token based authentification.
-//tz.use(jwt({ secret: secret }));
 
 // Add the livereload script to the html views.
 tz.use(liveReload());
