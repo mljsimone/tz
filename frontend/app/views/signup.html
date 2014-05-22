@@ -3,7 +3,7 @@
     <div class="col-md-12"> 
       <h1>Sign up</h1>
       <h2>In order to give you an account, we need all this data from you:</h2>
-      <form id="sp-form" name="signupForm" class="form-horizontal" ng-controller="SignupFormController" ng-submit="onSubmit()" novalidate>
+      <form id="sp-form" name="signupForm" class="form-horizontal" ng-submit="onSubmit()" novalidate>
         <div class="form-group" ng-class="{ 'has-success': signupForm.firstName.$valid, 'has-error': signupForm.firstName.$dirty && signupForm.firstName.$invalid }">
           <label for="sp-form-first-name" class="col-md-2 control-label">First name</label>
           <div class="col-md-4">

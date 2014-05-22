@@ -2,17 +2,18 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Provide your email and password to sign in ...</h2>
-      <form id="sp-form" class="form-inline" ng-controller="SigninFormController" ng-submit="onSubmit()">
-        <div class="form-group">
-          <label class="sr-only" for="sp-form-email">Email address</label>
-          <input id="sp-form-email" class="form-control"  type="email" ng-model="credentials.email" placeholder="Email" autofocus>
+      <form id="sip-form" name="signinForm" class="form-inline" ng-submit="onSubmit()" novalidate>
+        <div class="form-group" ng-class="{ 'has-success': signinForm.email.$valid, 'has-error': signinForm.email.$dirty && signinForm.email.$invalid }">
+          <label class="sr-only" for="sip-form-email">Email address</label>
+          <input id="sip-form-email" name="email" class="form-control" type="email" ng-model="credentials.email" placeholder="Email" autofocus required>
         </div>
-        <div class="form-group">
-          <label class="sr-only" for="sp-form-password">Password</label>
-          <input ng-model="credentials.password" type="password" class="form-control" id="sp-form-password"  placeholder="Password">
+        <div class="form-group" ng-class="{ 'has-success': signinForm.password.$valid, 'has-error': signinForm.password.$dirty && signinForm.password.$invalid }">
+          <label class="sr-only" for="sip-form-password">Password</label>
+          <input id="sip-form-password" name="password" ng-model="credentials.password" type="password" class="form-control" placeholder="Password" required>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button ng-disabled="signinForm.$invalid" id="sif-submit" type="submit" class="btn btn-primary btn-lg" data-loading-text="Working... <span class='glyphicon glyphicon-refresh spin'>">Sign in</button>
       </form>
+      <p id="sip-error-message" class="text-danger text-center" ng-show="wrongCredentials">Wrong user name or password. Please try again.</p>
     </div>
   </div>
 </div>
