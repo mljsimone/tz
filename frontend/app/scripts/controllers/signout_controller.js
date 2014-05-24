@@ -1,11 +1,13 @@
 "use strict";
 
-module.exports = function($scope, $location) {
-  console.log("begin logoutController()");
+module.exports = function($rootScope, $location, Authentification) {
+  var promise = Authentification.signOut();
   
-  /** logout the user **/
-  
-  $location.path("/");
-  
-  console.log("end logoutController()");
+  promise.then(function() {
+    $rootScope.$broadcast(Authentification.events.signOutSuccess);
+  }).catch(function() {
+    $rootScope.$broadcast(Authentification.events.signOutFailed);
+  }).finally(function() {
+    $location.path("/");
+  });
 };

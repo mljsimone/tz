@@ -29,9 +29,12 @@ function create(request, response) {
       if (!user.verifyPassword(password))
         return response.send(401, { error: "Wrong email or password." });
       
-      var token = jwt.sign(user.toJSON(), "secret sauce #40", { expiresInMinutes: 60 * 5 });
+      var tokenData = user.toJSON();
+      delete tokenData.password;
+
+      var token = jwt.sign(tokenData, "secret sauce #40", { expiresInMinutes: 60 * 5 });
       
-      response.json({ token: token });
+      response.json({ token: token, user: tokenData });
 
       }, 1000 * 3); //setTimeout
 

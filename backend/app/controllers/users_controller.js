@@ -17,7 +17,7 @@ function create(request, response) {
       }, 3000);
     }).
     error(function(error) {
-      response.send(500, { error: error });
+      response.json(500, { error: error });
     });
 }
 
