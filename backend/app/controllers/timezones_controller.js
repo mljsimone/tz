@@ -15,6 +15,8 @@ function destroy(request, response) {
 }
 
 function findAll(request, response) {
+  console.log(request.user);
+  response.json([{}, {}, {}]);
 }
 
 function findOne(request, response) {

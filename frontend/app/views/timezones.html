@@ -1,0 +1,33 @@
+<div id="timezones-page">
+  <div class="row">
+    <div class="col-md-12"> 
+      <h1 class="text-center">These are your timezones:</h1>
+      <button type="button" class="btn btn-primary">New timezone</button>
+      <table id="tp-table" class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Delta</th>
+            <th>Current time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="timezone in timezones">
+            <td>{{timezone.id}}</td>
+            <td>{{timezone.name}}</td>
+            <td>{{timezone.city}}</td>
+            <td>{{timezone.delta}}</td>
+            <td>20:00</td>
+            <td>
+              <button type="button" class="btn btn-link btn-xs">Edit</button>
+              <button type="button" class="btn btn-link btn-xs">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
