@@ -6,7 +6,7 @@ window.jQuery = require("jquery"),
 
 require("angular");
 require("angular-route/angular-route");
-require("angular-resource/resource");
+require("angular-resource/angular-resource");
 require("bootstrap/dist/js/bootstrap");
 
 var app = angular.module("tz", [
