@@ -11,8 +11,7 @@ var gulp         = require('gulp')
   , changed      = require('gulp-changed')
   , rename       = require('gulp-rename')
   , concat       = require('gulp-concat')
-  , clean        = require('gulp-clean')
-  , rsync        = require('rsync');
+  , clean        = require('gulp-clean');
 
 var PATHS = {
   input: {
@@ -100,30 +99,6 @@ gulp.task('server', function() {
     port: 8080,
     livereload: true
   });
-});
-
-gulp.task('deploy', function() {
-  var source = "build/";
-  var dest = "";
-  
-  throw new Error("Needs to be configured");
-  
-  new rsync()
-    .shell("ssh")
-    .flags("avz")
-    .source(source)
-    .destination(dest)
-    .execute(
-      function(error, code, cmd) {
-        console.log("\nDeployed.");
-      },
-      function stdoutHandler(data) {
-        process.stdout.write(data);
-      },
-      function stderrHandler(data) {
-        process.stderr.write(data);
-      }
-    );
 });
 
 gulp.task('default', [
