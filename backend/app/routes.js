@@ -1,13 +1,13 @@
 var app = require("./."),
-    jwt = require('express-jwt'),
+    jwt = require("express-jwt"),
+    config = require("./config");
     controllers = require("./controllers");
 
 var users = controllers.users,
     sessions = controllers.sessions,
     timezones = controllers.timezones;
 
-var secret = 'secret sauce #40';
-var authenticated = jwt({ secret: secret });
+var authenticated = jwt({ secret: config.secret });
 
 app.
   post(   "/upi/v1/sers",      users.create).

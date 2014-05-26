@@ -1,4 +1,5 @@
 var jwt = require("jsonwebtoken"),
+    config = require("../config"),
     User = require("../models").User;
 
 module.exports = {
@@ -21,6 +22,7 @@ function create(request, response) {
     find({ where: { email: email }}).
     success(function(user) {
 
+      // Delay reply so we can actually see the spinners.
       setTimeout(function () {
 
       if (!user)
@@ -32,7 +34,7 @@ function create(request, response) {
       var tokenData = user.toJSON();
       delete tokenData.password;
 
-      var token = jwt.sign(tokenData, "secret sauce #40", { expiresInMinutes: 60 * 5 });
+      var token = jwt.sign(tokenData, config.secret, { expiresInMinutes: 60 * 5 });
       
       response.json({ token: token, user: tokenData });
 
