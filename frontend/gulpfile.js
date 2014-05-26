@@ -56,7 +56,7 @@ gulp.task('scripts', function() {
     .src('app/scripts/application.js')
     .pipe(changed('build/scripts'))
     .pipe(browserify())
-    //.pipe(minifyJS())
+    .pipe(minifyJS())
     .pipe(rename('application.min.js'))
     .pipe(gulp.dest('build/scripts'))
     .pipe(connect.reload());
