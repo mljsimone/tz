@@ -67,6 +67,15 @@ models.sequelize.
     User.create(u2);
 
     Timezone.create(t1);
+    Timezone.create(t1);
+    Timezone.create(t1);
+    Timezone.create(t2);
+    Timezone.create(t2);
+    Timezone.create(t2);
+    Timezone.create(t3);
+    Timezone.create(t3);
+    Timezone.create(t1);
+    Timezone.create(t1);
     Timezone.create(t2);
     Timezone.create(t3);
 

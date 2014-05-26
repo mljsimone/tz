@@ -11,6 +11,8 @@ module.exports = function($resource) {
   return $resource(
     "/api/v1/timezones/:id",
     { id: "@id" },
-    {}
+    {
+      update: { method: "PUT" }
+    }
   );
 }

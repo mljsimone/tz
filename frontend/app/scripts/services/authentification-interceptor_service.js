@@ -1,10 +1,16 @@
-module.exports = function($q, $window) {
+module.exports = function($window) {
   return {
     request: function(config) {
       config.headers = config.headers || {};
-      
-      if ($window.sessionStorage.token)
-        config.headers.Authorization = "Bearer " + $window.sessionStorage.token;
+
+      // Due to a bug in angular shitty DI, I can't use the Authentification here.
+      //
+      var session = $window.sessionStorage.session;
+
+      if (session) {
+        var token = JSON.parse(session).token;
+        config.headers.Authorization = "Bearer " + token;
+      }
       
       return config;
     }

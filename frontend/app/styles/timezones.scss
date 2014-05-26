@@ -1,4 +1,14 @@
 #timezones-page {
+  #tp-search {
+    input[type="search"] {
+      margin-right: 10px;
+    }
+
+    button[type="submit"] {
+      margin-right: 10px;
+    }
+  }
+
   #tp-table {
     margin-top: 100px;
 

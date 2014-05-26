@@ -22,30 +22,15 @@ function create(request, response) {
 }
 
 function destroy(request, response) {
+  response.send(405);
 }
 
 function findAll(request, response) {
-  User.
-    findAll().
-    success(function(users) {
-      response.json(users);
-    }).
-    error(function(error) {
-      response.json(500, { error: error });
-    });
+  response.send(405);
 }
 
 function findOne(request, response) {
-  var id = request.params.id;
-  
-  User.
-    find(id).
-    success(function(user) {
-      response.json(user);
-    }).
-    error(function(error) {
-      response.json(500, { error: error });
-    });
+  response.send(405);
 }
 
 function update(request, response) {

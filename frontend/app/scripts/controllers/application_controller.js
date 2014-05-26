@@ -18,4 +18,9 @@ module.exports = function($scope, $rootScope, Authentification) {
   $rootScope.$on(Authentification.events.signOutFailed, function() {
     $scope.session = null;
   });
+  
+  // Little utility to generate lists using ng-repeat.
+  $scope.range = function(n) {
+    return new Array(n);
+  };
 };

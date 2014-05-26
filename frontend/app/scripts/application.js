@@ -33,6 +33,8 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider", function($ro
     when("/signup",    { controller: "SignupController",    templateUrl: "views/signup.html" }).
     when("/signin",    { controller: "SigninController",    templateUrl: "views/signin.html" }).
     when("/signout",   { controller: "SignoutController",   template:    "" }).
-    when("/timezones", { controller: "TimezonesController", templateUrl: "views/timezones.html" }).
+    when("/timezones/add", { controller: "TimezonesAddController", templateUrl: "views/timezones-add.html" }).
+    when("/timezones/:page?", { controller: "TimezonesController", templateUrl: "views/timezones.html", reloadOnSearch: true }).
+    when("/timezones/:id/edit", { controller: "TimezonesEditController", templateUrl: "views/timezones-edit.html" }).
     otherwise({ redirectTo: "/" });
 }]);

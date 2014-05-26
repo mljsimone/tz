@@ -27,17 +27,30 @@ module.exports = function($q, $window, Session) {
     },
 
     getSession: function() {
-      return JSON.parse(sessionStorage.session || null);
+      var session = $window.sessionStorage.session;
+
+      if (session)
+        return JSON.parse(session);
+
+      return null;
     },
 
     getUser: function() {
-      var session = JSON.parse(sessionStorage.session || null);
+      var session =  $window.sessionStorage.session;
 
-      return session.user || null;
+      if (session)
+        return JSON.parse(session).user;
+      
+      return null;
     },
 
     getToken: function() {
-      return $window.sessionStorage.session_token;
+      var session =  $window.sessionStorage.session;
+
+      if (session)
+        return JSON.parse(session).token;
+      
+      return null;
     },
 
     events: {

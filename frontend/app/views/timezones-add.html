@@ -1,0 +1,41 @@
+<div id="timezones-add-page">
+  <div class="row">
+    <div class="col-md-12"> 
+      <h1 class="text-center">Add a timezone:</h1>
+      <form id="tap-form" name="tzForm" class="form-horizontal" role="form" ng-submit="onSubmit()" novalidate>
+        <p ng-show="showSaveSuccess" class="text-success text-center">Saved!</p>
+        <p ng-show="showSaveFailed" class="text-danger text-center">There was an error while saving. Try again in a while.</p>
+        <div class="form-group" ng-class="{ 'has-success': tzForm.name.$valid, 'has-error': tzForm.name.$dirty && tzForm.name.$invalid }">
+          <label for="tap-form-name" class="col-md-2 control-label">name</label>
+          <div class="col-md-4">
+            <input id="tap-form-first-name" ng-model="timezone.name" name="name" type="text" class="form-control" autofocus required>
+            <span ng-show="tzForm.name.$dirty && tzForm.name.$error.required" class="help-block">It can't be empty.</span>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': tzForm.city.$valid, 'has-error': tzForm.city.$dirty && tzForm.city.$invalid }">
+          <label for="tap-form-city" class="col-md-2 control-label">City</label>
+          <div class="col-md-4">
+            <input id="tap-form-first-city" ng-model="timezone.city" name="city" type="text" class="form-control" required>
+            <span ng-show="tzForm.city.$dirty && tzForm.city.$error.required" class="help-block">It can't be empty.</span>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': tzForm.delta.$valid, 'has-error': tzForm.delta.$dirty && tzForm.delta.$invalid }">
+          <label for="tap-form-city" class="col-md-2 control-label">GMT Diff.</label>
+          <div class="col-md-4">
+            <input id="tap-form-first-delta" ng-model="timezone.delta" name="delta" type="number" class="form-control" required>
+            <span ng-show="tzForm.delta.$dirty && tzForm.delta.$error.required" class="help-block">It can't be empty.</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-4 text-right">
+            <button id="taf-submit" type="submit" class="btn btn-primary btn-lg" ng-disabled="tzForm.$invalid" data-loading-text="Working... <span class='glyphicon glyphicon-refresh spin'></span>">Save</button>
+            <a id="taf-cancel" class="btn btn-danger btn-lg" href="#!/timezones">Cancel</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
