@@ -10,7 +10,7 @@ var users = controllers.users,
 var authenticated = jwt({ secret: config.secret });
 
 app.
-  post(   "/upi/v1/sers",      users.create).
+  post(   "/api/v1/users",      users.create).
   delete( "/api/v1/users/:id", authenticated, users.destroy).
   get(    "/api/v1/users",     authenticated, users.findAll).
   get(    "/api/v1/users/:id", authenticated, users.findOne).
